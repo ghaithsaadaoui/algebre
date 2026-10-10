@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algèbre - Les Polynômes (Licence Sciences Informatiques)</title>
+    
+    <!-- Intégration de MathJax pour le rendu propre des formules mathématiques -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        
+        header {
+            background-color: #0056b3;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        h2 {
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            color: #e0e0e0;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .formula {
+            background-color: #f1f3f5;
+            padding: 10px;
+            border-left: 4px solid #0056b3;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Cours d'Algèbre : Polynômes $K[X]$</h1>
+        <p class="subtitle">Licence Sciences Informatiques</p>
+    </header>
+
+    <div class="card">
+        <p>En informatique, les polynômes jouissent d'un rôle fondamental dans de nombreux domaines comme la <strong>cryptographie</strong>, les <strong>codes correcteurs d'erreurs</strong> (ex: Reed-Solomon) et l'<strong>analyse de complexité des algorithmes</strong>.</p>
+    </div>
+
+    <section class="card">
+        <h2>1. Introduction &amp; Définition</h2>
+        <p>Un polynôme à coefficients dans un corps $K$ (généralement $\mathbb{R}$ ou $\mathbb{C}$) est une expression formelle de la forme :</p>
+        <div class="formula">
+            $$P(X) = a_n X^n + a_{n-1} X^{n-1} + \dots + a_1 X + a_0$$
+        </div>
+        <p>où $a_0, a_1, \dots, a_n$ sont les coefficients dans $K$. L'ensemble de tous ces polynômes est noté <strong>$K[X]$</strong>.</p>
+    </section>
+
+    <section class="card">
+        <h2>2. Notions Clés à Maîtriser</h2>
+        <ul>
+            <li>
+                <strong>Degré d'un polynôme ($\deg(P)$) :</strong> C'est l'exposant $n$ du terme non nul de plus haut degré (si $a_n \neq 0$).
+                <ul>
+                    <li>$\deg(P + Q) \le \max(\deg(P), \deg(Q))$</li>
+                    <li>$\deg(P \times Q) = \deg(P) + \deg(Q)$</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Division Euclidienne :</strong> Pour tous polynômes $A$ et $B$ (avec $B \neq 0$), il existe un unique couple de polynômes $(Q, R)$ tel que :
+                <div class="formula">
+                    $$A = BQ + R \quad \text{avec} \quad \deg(R) < \deg(B)$$
+                </div>
+            </li>
+            <li>
+                <strong>Racines et Divisibilité :</strong> Un élément $\alpha \in K$ est une <strong>racine</strong> de $P$ si $P(\alpha) = 0$. <br>
+                <em>Théorème clé :</em> $\alpha$ est racine de $P$ si et seulement si le polynôme $(X - \alpha)$ divise $P(X)$.
+            </li>
+            <li>
+                <strong>Polynômes Irréductibles :</strong> Ce sont les "blocs de construction" (l'équivalent des nombres premiers pour les polynômes).
+                <ul>
+                    <li>Dans $\mathbb{C}[X]$, seuls les polynômes de <strong>degré 1</strong> sont irréductibles (Théorème fondamental de d'Alembert-Gauss).</li>
+                    <li>Dans $\mathbb{R}[X]$, les irréductibles sont ceux de <strong>degré 1</strong> et ceux de <strong>degré 2</strong> dont le discriminant ($\Delta$) est strictement négatif.</li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>3. Méthodes Clés pour les Examens</h2>
+        <ul>
+            <li>
+                <strong>Multiplicité d'une racine :</strong> Un nombre $\alpha$ est une racine d'ordre $k$ si $(X - \alpha)^k$ divise $P$ mais $(X - \alpha)^{k+1}$ ne le divise pas. <br>
+                <em>Méthode pratique :</em> On vérifie que :
+                <div class="formula">
+                    $$P(\alpha) = P'(\alpha) = \dots = P^{(k-1)}(\alpha) = 0 \quad \text{et} \quad P^{(k)}(\alpha) \neq 0$$
+                </div>
+            </li>
+            <li>
+                <strong>PGCD et Algorithme d'Euclide :</strong> Tout comme pour les entiers, on calcule le PGCD de deux polynômes par divisions euclidiennes successives, ce qui permet d'utiliser l'identité de Bézout ($AU + BV = \text{PGCD}(A,B)$).
+            </li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>Support de révision — Licence Sciences Informatiques</p>
+    </footer>
+
+</body>
+</html>
